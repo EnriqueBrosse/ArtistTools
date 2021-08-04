@@ -72,3 +72,16 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+
+# remove everything except the plugin
+Plugin/.vs
+Plugin/Binaries
+Plugin/Config
+Plugin/Content
+Plugin/DerivedDataCache
+Plugin/Intermediate
+Plugin/Saved
+Plugin/Source
+Plugin/Plugin.sln
+Plugin/Plugin.uproject

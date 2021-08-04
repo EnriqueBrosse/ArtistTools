@@ -1,0 +1,23 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ArtistsTools.cpp.obj": [
+			"InstancedStaticMeshActor.cpp.obj",
+			"Replacer.cpp.obj",
+			"ArtistsTools.cpp.obj",
+			"Circle.cpp.obj",
+			"CircleLights.cpp.obj",
+			"CircleMesh.cpp.obj"
+		],
+		"Module.ArtistsTools.gen.cpp.obj": [
+			"ArtistsTools.init.gen.cpp.obj",
+			"Circle.gen.cpp.obj",
+			"CircleLights.gen.cpp.obj",
+			"CircleMesh.gen.cpp.obj",
+			"InstancedStaticMeshActor.gen.cpp.obj",
+			"LightTypes.gen.cpp.obj",
+			"Replacer.gen.cpp.obj",
+			"SpawnOptions.gen.cpp.obj"
+		]
+	}
+}
