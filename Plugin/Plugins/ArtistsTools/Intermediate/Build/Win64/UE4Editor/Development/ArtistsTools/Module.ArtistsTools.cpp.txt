@@ -1,7 +1,7 @@
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Development\ArtistsTools\Definitions.ArtistsTools.h
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/InstancedMeshes/InstancedStaticMeshActor.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\InstancedMeshes\InstancedStaticMeshActor.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\InstancedStaticMeshActor.generated.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Development\ArtistsTools\Definitions.ArtistsTools.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/InstancedMeshes/InstancedStaticMeshActor.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\InstancedMeshes\InstancedStaticMeshActor.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\InstancedStaticMeshActor.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/StaticMeshActor.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\StaticMeshActor.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
@@ -15,24 +15,24 @@ C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Edi
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/InstancedMeshes/Replacer.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\InstancedMeshes\Replacer.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\Replacer.generated.h
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/Private/ArtistsTools.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\ArtistsTools.h
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/Private/Circle.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\Circle.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\../Enums/SpawnOptions.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/InstancedMeshes/Replacer.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\InstancedMeshes\Replacer.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\Replacer.generated.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/Private/ArtistsTools.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\ArtistsTools.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/Private/Circle.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\Circle.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\Public\../Enums/SpawnOptions.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Components/SplineComponent.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SplineComponent.generated.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\Circle.generated.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\Circle.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/SplineBasedLights/CircleLights.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedLights\CircleLights.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedLights\../Enums/LightTypes.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\CircleLights.generated.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/SplineBasedLights/CircleLights.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedLights\CircleLights.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedLights\../Enums/LightTypes.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\CircleLights.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/RectLight.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/Light.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Light.generated.h
@@ -53,6 +53,6 @@ C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\C
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\PointLightComponent.generated.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\Components/SpotLightComponent.h
 C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SpotLightComponent.generated.h
-C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/SplineBasedMeshes/CircleMesh.cpp
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedMeshes\CircleMesh.h
-C:\Perforce\gamep_group09\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\CircleMesh.generated.h
+C:/Perforce/gamep_group09/ArtistTools/Plugin/Plugins/ArtistsTools/Source/ArtistsTools/SplineBasedMeshes/CircleMesh.cpp
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Source\ArtistsTools\SplineBasedMeshes\CircleMesh.h
+C:\Perforce\gamep_group09\ArtistTools\Plugin\Plugins\ArtistsTools\Intermediate\Build\Win64\UE4Editor\Inc\ArtistsTools\CircleMesh.generated.h

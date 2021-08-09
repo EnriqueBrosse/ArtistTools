@@ -4,5 +4,6 @@
 #include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/CircleLights.gen.cpp"
 #include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/CircleMesh.gen.cpp"
 #include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/InstancedStaticMeshActor.gen.cpp"
+#include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/LightTypes.gen.cpp"
 #include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/Replacer.gen.cpp"
 #include "C:/Perforce/gamep_group09/Plugin/Plugins/ArtistsTools/Intermediate/Build/Win64/UE4Editor/Inc/ArtistsTools/SpawnOptions.gen.cpp"
