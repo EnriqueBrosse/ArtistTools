@@ -12,50 +12,11 @@ USTRUCT()
 struct FArrayStruct
 {
 	GENERATED_BODY()
+		UStaticMesh* StaticMesh;
+	TArray <UMaterialInterface*> Materials;
 	TArray<FTransform> TransformArray;
 	TArray<AActor*> ActorArray;
 };
-//https://medium.com/swlh/using-custom-c-structs-as-tmap-keys-in-unreal-engine-ca3be6be3fea
-USTRUCT()
-struct FKeyStruct
-{
-	GENERATED_BODY()
-		UStaticMesh* StaticMesh;
-	TArray <UMaterialInterface*> Materials;
-	bool operator==(const FKeyStruct& other) const
-	{
-		return Equals(other);
-	}
-
-	bool Equals(const FKeyStruct& other) const
-	{
-
-		if (StaticMesh != other.StaticMesh
-			|| Materials.Num() != other.Materials.Num())
-		{
-			return false;
-		}
-		for (int32 i = 0; i < Materials.Num(); i++)
-		{
-			if (Materials[i] != other.Materials[i])
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-};
-
-#if UE_BUILD_DEBUG
-uint32 GetTypeHash(const FKeyStruct& Thing);
-#else // optimize by inlining in shipping and development builds
-FORCEINLINE uint32 GetTypeHash(const FKeyStruct& Thing)
-{
-	uint32 Hash = FCrc::MemCrc32(&Thing, sizeof(FKeyStruct));
-	return Hash;
-}
-#endif
-
 
 UCLASS()
 class ARTISTSTOOLS_API AReplacer : public AActor
@@ -72,4 +33,5 @@ public:
 		int MinAmountToReplace = 2;
 private: 
 	bool CanBeInstanced(const FVector& scale)const;
+	bool AreMaterialEqual(const TArray<UMaterialInterface*>& mat1, const TArray<UMaterialInterface*>& mat2);
 };

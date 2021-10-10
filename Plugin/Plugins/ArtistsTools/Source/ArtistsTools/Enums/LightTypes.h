@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 
 UENUM(BlueprintType)
-enum class LightTypes : uint8
+enum class ELightTypes : uint8
 {
 	PointLight = 0 UMETA(DisplayName = "PointLight"),
 	Spotlight = 1  UMETA(DisplayName = "Spotlight"),

@@ -25,50 +25,64 @@ void AReplacer::Replace()
 	TArray<AActor*> actorArray{};
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AStaticMeshActor::StaticClass(), actorArray);
 	TArray<AStaticMeshActor*> staticMeshArray{};
+	staticMeshArray.Reserve(actorArray.Num());
 	for (int32 i = 0; i < actorArray.Num(); i++)
 	{
 		staticMeshArray.Add(Cast<AStaticMeshActor>(actorArray[i]));
 	}
-	// make the map for the different meshes and instances 
-	TMap<FKeyStruct, FArrayStruct> map{};
-	TArray<AActor*> meshesToDelete{};
-	for (int32 i = 0; i < staticMeshArray.Num(); i++)
+	// sorting on memeory addresses from the static meshes 
+	// this should order the static meshes so that they're 
+	Algo::Sort(staticMeshArray, [](AStaticMeshActor* sma1, AStaticMeshActor* sma2)
+		{
+			return sma1->GetStaticMeshComponent()->GetStaticMesh() <
+				sma2->GetStaticMeshComponent()->GetStaticMesh();
+		});
+	// emptying an array that i'm not using the data from anymore
+	actorArray.Empty();
+	TArray<FArrayStruct> sortedArray{};
+	for (size_t i = 0; i < staticMeshArray.Num(); i++)
 	{
-		UStaticMeshComponent* staticMesh = staticMeshArray[i]->GetStaticMeshComponent();
-		FKeyStruct key{};
-		key.StaticMesh = staticMesh->GetStaticMesh();
-		key.Materials = staticMesh->GetMaterials();
-		if (!CanBeInstanced(staticMesh->GetComponentScale()))
+		UStaticMeshComponent* staticMeshComp = staticMeshArray[i]->GetStaticMeshComponent();
+		UStaticMesh* staticMesh = staticMeshComp->GetStaticMesh();
+		const TArray <UMaterialInterface*>& materials = staticMeshComp->GetMaterials();
+		bool bIsMeshFound = false;
+		for (size_t j = 0; j < sortedArray.Num(); j++)
 		{
-			continue;
+			if (sortedArray[j].StaticMesh == staticMesh && AreMaterialEqual(materials, sortedArray[j].Materials))
+			{
+				sortedArray[j].ActorArray.Add(staticMeshArray[i]);
+				sortedArray[j].TransformArray.Add(staticMeshArray[i]->GetActorTransform());
+				bIsMeshFound = true;
+				break;
+			}
 		}
-		if (map.Contains(key))
+		if (!bIsMeshFound)
 		{
-			map.Find(key)->TransformArray.Add(staticMeshArray[i]->GetTransform());
-			map.Find(key)->ActorArray.Add(staticMeshArray[i]);
-		}
-		else
-		{
-			FArrayStruct arrStruct{};
-			arrStruct.TransformArray.Add(staticMeshArray[i]->GetTransform());
-			arrStruct.ActorArray.Add(staticMeshArray[i]);
-			map.Add(key, arrStruct);
+			FArrayStruct arrstruct{};
+			arrstruct.StaticMesh = staticMesh;
+			arrstruct.Materials = materials;
+			arrstruct.ActorArray.Add(staticMeshArray[i]);
+			arrstruct.TransformArray.Add(staticMeshArray[i]->GetActorTransform());
+			sortedArray.Add(arrstruct);
 		}
 	}
+	// emptying it because I'm not going to use it anymore
+	staticMeshArray.Empty();
 
 	FVector Location(0.0f, 0.0f, 0.0f);
 	FRotator Rotation(0.0f, 0.0f, 0.0f);
 	FActorSpawnParameters SpawnInfo;
 	FAttachmentTransformRules attachmentRules{ EAttachmentRule::KeepRelative,false };
-	// make the instanced static meshes 
-	for (const TPair<FKeyStruct, FArrayStruct>& pair : map)
+	for (size_t i = 0; i < sortedArray.Num(); i++)
 	{
-		if (pair.Value.TransformArray.Num() < MinAmountToReplace)
+		const FArrayStruct& arrStruct = sortedArray[i];
+		if (arrStruct.ActorArray.Num() < MinAmountToReplace)
 		{
 			continue;
 		}
 		AInstancedStaticMeshActor* instancedStaticMeshActor = GetWorld()->SpawnActor<AInstancedStaticMeshActor>(Location, Rotation, SpawnInfo);
-		FName name = pair.Key.StaticMesh->GetFName();
+		// setting the name
+		FName name = arrStruct.StaticMesh->GetFName();
 		FName name2{ name.ToString().Append(" instanced ") };
 		instancedStaticMeshActor->SetName(name2.ToString());
 
@@ -76,28 +90,26 @@ void AReplacer::Replace()
 		instancedStaticMesh->SetWorldLocation(Location);
 		instancedStaticMesh->SetWorldRotation(Rotation);
 
-		instancedStaticMesh->SetStaticMesh(pair.Key.StaticMesh);
+		instancedStaticMesh->SetStaticMesh(arrStruct.StaticMesh);
 
-		const TArray <UMaterialInterface*>& materials = pair.Key.Materials;
-		for (int32 i = 0; i < materials.Num(); i++)
+		const TArray <UMaterialInterface*>& materials = arrStruct.Materials;
+		for (int32 j = 0; j < materials.Num(); j++)
 		{
-			instancedStaticMesh->SetMaterial(i, materials[i]);
+			instancedStaticMesh->SetMaterial(j, materials[j]);
 		}
 
-		const TArray<FTransform>& transformArray = pair.Value.TransformArray;
-		const TArray<AActor*>& actorArray2 = pair.Value.ActorArray;
-		for (int32 i = 0; i < transformArray.Num(); i++)
+		const TArray<FTransform>& transformArray = arrStruct.TransformArray;
+		const TArray<AActor*>& actorArray2 = arrStruct.ActorArray;
+		for (int32 j = 0; j < transformArray.Num(); j++)
 		{
-			instancedStaticMesh->AddInstance(transformArray[i]);
-			meshesToDelete.Add(actorArray2[i]);
+			instancedStaticMesh->AddInstanceWorldSpace(transformArray[j]);
+			actorArray2[j]->Destroy();
 		}
-		instancedStaticMesh->AttachToComponent(instancedStaticMeshActor->GetRootComponent(),attachmentRules);
 		instancedStaticMeshActor->AddCustomData();
-	}
-	// destroy all the actors
-	for (int32 i = 0; i < meshesToDelete.Num(); i++)
-	{
-		meshesToDelete[i]->Destroy();
+		instancedStaticMesh->AttachToComponent(instancedStaticMeshActor->GetRootComponent(), attachmentRules);
+		// emptying the data that I don't need
+		sortedArray[i].ActorArray.Empty();
+		sortedArray[i].TransformArray.Empty();
 	}
 }
 
@@ -105,4 +117,20 @@ bool AReplacer::CanBeInstanced(const FVector& scale)const
 {
 	// if the scales are mirrored they have a negative scale
 	return scale.X > 0 && scale.Y > 0 && scale.Z > 0;
+}
+
+bool AReplacer::AreMaterialEqual(const TArray<UMaterialInterface*>& mat1, const TArray<UMaterialInterface*>& mat2)
+{
+	if (mat1.Num() != mat2.Num())
+	{
+		return false;
+	}
+	for (int32 i = 0; i < mat1.Num(); i++)
+	{
+		if (mat1[i] != mat2[i])
+		{
+			return false;
+		}
+	}
+	return true;
 }

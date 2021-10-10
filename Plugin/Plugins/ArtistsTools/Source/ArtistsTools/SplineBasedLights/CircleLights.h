@@ -20,7 +20,7 @@ public:
 		virtual void Spawn() override;
 
 	UPROPERTY(EditAnywhere, Category = "LightSettings")
-		LightTypes LightType = LightTypes::RectLight;
+		ELightTypes LightType = ELightTypes::RectLight;
 	UPROPERTY(EditAnywhere, Category = "LightSettings")
 		ELightUnits LightUnits = ELightUnits::Candelas;
 	UPROPERTY(EditAnywhere, Category = "LightSettings")

@@ -34,7 +34,7 @@ void ACircleMesh::Spawn()
 	case SpawnOptions::Default:
 		for (uint32 i = 0; i < AmountOfSides; i++)
 		{
-			TArray<FTransform> transforms = MakeInstances(i, ESplineCoordinateSpace::Local);
+			const TArray<FTransform>& transforms = MakeInstances(i, ESplineCoordinateSpace::Local);
 			for (int32 j = 0; j < transforms.Num(); j++)
 			{
 				InstancedStaticMeshComponent->AddInstance(transforms[j]);
@@ -44,7 +44,7 @@ void ACircleMesh::Spawn()
 	case SpawnOptions::InCircle:
 		for (uint32 i = 0; i < AmountOfSides; i++)
 		{
-			TArray<FTransform> transforms = MakeInstancesInCircle(i, ESplineCoordinateSpace::Local);
+			const TArray<FTransform>& transforms = MakeInstancesInCircle(i, ESplineCoordinateSpace::Local);
 			for (int32 j = 0; j < transforms.Num(); j++)
 			{
 				InstancedStaticMeshComponent->AddInstance(transforms[j]);

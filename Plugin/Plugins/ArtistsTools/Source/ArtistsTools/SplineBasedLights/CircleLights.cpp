@@ -43,7 +43,7 @@ void ACircleLights::Spawn()
 	case SpawnOptions::Default:
 		for (uint32 i = 0; i < AmountOfSides; i++)
 		{
-			TArray<FTransform> transforms = MakeInstances(i, ESplineCoordinateSpace::World);
+			const TArray<FTransform>& transforms = MakeInstances(i, ESplineCoordinateSpace::World);
 			for (int32 j = 0; j < transforms.Num(); j++)
 			{
 				SpawnLight(transforms[j]);
@@ -53,7 +53,7 @@ void ACircleLights::Spawn()
 	case SpawnOptions::InCircle:
 		for (uint32 i = 0; i < AmountOfSides; i++)
 		{
-			TArray<FTransform> transforms = MakeInstancesInCircle(i, ESplineCoordinateSpace::World);
+			const TArray<FTransform>& transforms = MakeInstancesInCircle(i, ESplineCoordinateSpace::World);
 			for (int32 j = 0; j < transforms.Num(); j++)
 			{
 				SpawnLight(transforms[j]);
@@ -83,7 +83,7 @@ void ACircleLights::SpawnLight(const FTransform& transform)
 
 	switch (LightType)
 	{
-	case LightTypes::PointLight:
+	case ELightTypes::PointLight:
 	{
 		APointLight* pointLight = GetWorld()->SpawnActor<APointLight>
 			(transform.GetLocation(), transform.GetRotation().Rotator(), spawnParameter);
@@ -98,7 +98,7 @@ void ACircleLights::SpawnLight(const FTransform& transform)
 		LightArray.Add(pointLight);
 	}
 		break;
-	case LightTypes::Spotlight:
+	case ELightTypes::Spotlight:
 	{
 		ASpotLight* spotLight = GetWorld()->SpawnActor<ASpotLight>
 			(transform.GetLocation(), transform.GetRotation().Rotator(), spawnParameter);
@@ -115,7 +115,7 @@ void ACircleLights::SpawnLight(const FTransform& transform)
 		LightArray.Add(spotLight);
 	}
 		break;
-	case LightTypes::RectLight:
+	case ELightTypes::RectLight:
 	{
 		ARectLight* rectLight = GetWorld()->SpawnActor<ARectLight>
 			(transform.GetLocation(), transform.GetRotation().Rotator(), spawnParameter);

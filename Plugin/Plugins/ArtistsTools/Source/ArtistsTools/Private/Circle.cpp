@@ -20,6 +20,7 @@ ACircle::ACircle()
 TArray<FTransform> ACircle::MakeInstancesInCircle(uint32 index, ESplineCoordinateSpace::Type coordinateSpace)
 {
 	TArray<FTransform> transforms{};
+	transforms.Reserve(AmountOfObjectsPerSide);
 	float alpha = 0.0f;
 	for (size_t i = 0; i < AmountOfObjectsPerSide; i++)
 	{
@@ -40,6 +41,7 @@ TArray<FTransform> ACircle::MakeInstancesInCircle(uint32 index, ESplineCoordinat
 TArray<FTransform> ACircle::MakeInstances(uint32 index, ESplineCoordinateSpace::Type coordinateSpace)
 {
 	TArray<FTransform> transforms{};
+	transforms.Reserve(AmountOfObjectsPerSide);
 	float alpha = 0.0f;
 	for (size_t i = 0; i < AmountOfObjectsPerSide; i++)
 	{
