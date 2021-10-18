@@ -31,7 +31,7 @@ void AReplacer::Replace()
 		staticMeshArray.Add(Cast<AStaticMeshActor>(actorArray[i]));
 	}
 	// sorting on memeory addresses from the static meshes 
-	// this should order the static meshes so that they're 
+	// this should order the static meshes pointers so that they're sorted 
 	Algo::Sort(staticMeshArray, [](AStaticMeshActor* sma1, AStaticMeshActor* sma2)
 		{
 			return sma1->GetStaticMeshComponent()->GetStaticMesh() <
@@ -40,13 +40,13 @@ void AReplacer::Replace()
 	// emptying an array that i'm not using the data from anymore
 	actorArray.Empty();
 	TArray<FArrayStruct> sortedArray{};
-	for (size_t i = 0; i < staticMeshArray.Num(); i++)
+	for (int32 i = 0; i < staticMeshArray.Num(); i++)
 	{
 		UStaticMeshComponent* staticMeshComp = staticMeshArray[i]->GetStaticMeshComponent();
 		UStaticMesh* staticMesh = staticMeshComp->GetStaticMesh();
 		const TArray <UMaterialInterface*>& materials = staticMeshComp->GetMaterials();
 		bool bIsMeshFound = false;
-		for (size_t j = 0; j < sortedArray.Num(); j++)
+		for (int32 j = 0; j < sortedArray.Num(); j++)
 		{
 			if (sortedArray[j].StaticMesh == staticMesh && AreMaterialEqual(materials, sortedArray[j].Materials))
 			{
@@ -73,7 +73,7 @@ void AReplacer::Replace()
 	FRotator Rotation(0.0f, 0.0f, 0.0f);
 	FActorSpawnParameters SpawnInfo;
 	FAttachmentTransformRules attachmentRules{ EAttachmentRule::KeepRelative,false };
-	for (size_t i = 0; i < sortedArray.Num(); i++)
+	for (int32 i = 0; i < sortedArray.Num(); i++)
 	{
 		const FArrayStruct& arrStruct = sortedArray[i];
 		if (arrStruct.ActorArray.Num() < MinAmountToReplace)
