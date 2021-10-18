@@ -39,7 +39,7 @@ void AReplacer::Replace()
 		});
 	// emptying an array that i'm not using the data from anymore
 	actorArray.Empty();
-	TArray<FArrayStruct> sortedArray{};
+	TArray<FReplacerStruct> sortedArray{};
 	for (int32 i = 0; i < staticMeshArray.Num(); i++)
 	{
 		UStaticMeshComponent* staticMeshComp = staticMeshArray[i]->GetStaticMeshComponent();
@@ -51,18 +51,16 @@ void AReplacer::Replace()
 			if (sortedArray[j].StaticMesh == staticMesh && AreMaterialEqual(materials, sortedArray[j].Materials))
 			{
 				sortedArray[j].ActorArray.Add(staticMeshArray[i]);
-				sortedArray[j].TransformArray.Add(staticMeshArray[i]->GetActorTransform());
 				bIsMeshFound = true;
 				break;
 			}
 		}
 		if (!bIsMeshFound)
 		{
-			FArrayStruct arrstruct{};
+			FReplacerStruct arrstruct{};
 			arrstruct.StaticMesh = staticMesh;
 			arrstruct.Materials = materials;
 			arrstruct.ActorArray.Add(staticMeshArray[i]);
-			arrstruct.TransformArray.Add(staticMeshArray[i]->GetActorTransform());
 			sortedArray.Add(arrstruct);
 		}
 	}
@@ -75,14 +73,14 @@ void AReplacer::Replace()
 	FAttachmentTransformRules attachmentRules{ EAttachmentRule::KeepRelative,false };
 	for (int32 i = 0; i < sortedArray.Num(); i++)
 	{
-		const FArrayStruct& arrStruct = sortedArray[i];
-		if (arrStruct.ActorArray.Num() < MinAmountToReplace)
+		const FReplacerStruct& replacerStruct = sortedArray[i];
+		if (replacerStruct.ActorArray.Num() < MinAmountToReplace)
 		{
 			continue;
 		}
 		AInstancedStaticMeshActor* instancedStaticMeshActor = GetWorld()->SpawnActor<AInstancedStaticMeshActor>(Location, Rotation, SpawnInfo);
 		// setting the name
-		FName name = arrStruct.StaticMesh->GetFName();
+		FName name = replacerStruct.StaticMesh->GetFName();
 		FName name2{ name.ToString().Append(" instanced ") };
 		instancedStaticMeshActor->SetName(name2.ToString());
 
@@ -90,26 +88,24 @@ void AReplacer::Replace()
 		instancedStaticMesh->SetWorldLocation(Location);
 		instancedStaticMesh->SetWorldRotation(Rotation);
 
-		instancedStaticMesh->SetStaticMesh(arrStruct.StaticMesh);
+		instancedStaticMesh->SetStaticMesh(replacerStruct.StaticMesh);
 
-		const TArray <UMaterialInterface*>& materials = arrStruct.Materials;
+		const TArray <UMaterialInterface*>& materials = replacerStruct.Materials;
 		for (int32 j = 0; j < materials.Num(); j++)
 		{
 			instancedStaticMesh->SetMaterial(j, materials[j]);
 		}
 
-		const TArray<FTransform>& transformArray = arrStruct.TransformArray;
-		const TArray<AActor*>& actorArray2 = arrStruct.ActorArray;
-		for (int32 j = 0; j < transformArray.Num(); j++)
+		const TArray<AActor*>& actorArray2 = replacerStruct.ActorArray;
+		for (int32 j = 0; j < actorArray2.Num(); j++)
 		{
-			instancedStaticMesh->AddInstanceWorldSpace(transformArray[j]);
+			instancedStaticMesh->AddInstanceWorldSpace(actorArray2[j]->GetActorTransform());
 			actorArray2[j]->Destroy();
 		}
 		instancedStaticMeshActor->AddCustomData();
 		instancedStaticMesh->AttachToComponent(instancedStaticMeshActor->GetRootComponent(), attachmentRules);
 		// emptying the data that I don't need
 		sortedArray[i].ActorArray.Empty();
-		sortedArray[i].TransformArray.Empty();
 	}
 }
 

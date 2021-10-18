@@ -9,12 +9,11 @@
 
 
 USTRUCT()
-struct FArrayStruct
+struct FReplacerStruct
 {
 	GENERATED_BODY()
 		UStaticMesh* StaticMesh;
 	TArray <UMaterialInterface*> Materials;
-	TArray<FTransform> TransformArray;
 	TArray<AActor*> ActorArray;
 };
 
